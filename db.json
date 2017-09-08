@@ -370,5 +370,82 @@
       "restaurantId": "tasty-treats"
     }
   ],
-  "orders": []
+  "orders": [
+    {
+      "address": "Rua nova ",
+      "number": 1000,
+      "optionalAddress": "Nova",
+      "paymentOption": "MON",
+      "orderItems": [
+        {
+          "quantify": 1,
+          "menuId": "capp"
+        },
+        {
+          "quantify": 1,
+          "menuId": "espreso"
+        }
+      ],
+      "id": 1
+    },
+    {
+      "address": "Rua Manoel Barata",
+      "number": 15,
+      "optionalAddress": "Centro",
+      "paymentOption": "MON",
+      "orderItems": [
+        {
+          "quantify": 1,
+          "menuId": "sunday"
+        }
+      ],
+      "id": 2
+    },
+    {
+      "address": "Rua das Berredos",
+      "number": 200,
+      "optionalAddress": "Centro",
+      "paymentOption": "MON",
+      "orderItems": [
+        {
+          "quantify": 1,
+          "menuId": "burger"
+        },
+        {
+          "quantify": 1,
+          "menuId": "fries"
+        }
+      ],
+      "id": 3
+    },
+    {
+      "address": "Rua 8 de Maio",
+      "number": 78,
+      "optionalAddress": "Feira",
+      "paymentOption": "MON",
+      "orderItems": [
+        {
+          "quantify": 1,
+          "menuId": "zlasagna"
+        }
+      ],
+      "id": 4
+    },
+    {
+      "name": "Jairo Sousa",
+      "email": "jns@email.com",
+      "emailConfirmation": "jns@email.com",
+      "address": "Rua Itaborai",
+      "number": 2000,
+      "optionalAddress": "Praça",
+      "paymentOption": "MON",
+      "orderItems": [
+        {
+          "quantify": 1,
+          "menuId": "cup-cake"
+        }
+      ],
+      "id": 5
+    }
+  ]
 }
