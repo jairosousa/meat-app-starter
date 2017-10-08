@@ -1,6 +1,6 @@
 import { Restaurant } from "app/restaurants/restaurant/restautant.model";
 import { Injectable } from "@angular/core";
-import { Http } from "@angular/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { MEAT_API } from "app/app.api";
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/map";
@@ -13,30 +13,27 @@ import { MenuItem } from "app/restaurant-detail/menu-item/munu-item.model";
 export class RestaurantsService {
     
     constructor(
-     private http: Http
+     private http: HttpClient
     ){}
 
-    restaurants():Observable<Restaurant[]> {
-        return this.http.get(`${MEAT_API}/restaurants`)
-          .map(response => response.json())
-          .catch(ErrorHandler.handleError)
+    restaurants(search?: string):Observable<Restaurant[]> {
+        let params: HttpParams = undefined
+
+        if(search){
+            params = new HttpParams().append('q', search)
+        }
+        return this.http.get<Restaurant[]>(`${MEAT_API}/restaurants`, {params: params})
     }
 
     restaurantById(id: string): Observable<Restaurant> {
-        return this.http.get(`${MEAT_API}/restaurants/${id}`)
-        .map(response => response.json())
-        .catch(ErrorHandler.handleError)
+        return this.http.get<Restaurant>(`${MEAT_API}/restaurants/${id}`)
     }
 
     reviewsOfRestaurant(id: string): Observable<any>{
         return this.http.get(`${MEAT_API}/restaurants/${id}/reviews`)
-        .map(response => response.json())
-        .catch(ErrorHandler.handleError)
     }
 
     menuOfRestaurants(id: string): Observable<MenuItem[]>{
-        return this.http.get(`${MEAT_API}/restaurants/${id}/menu`)
-        .map(response => response.json())
-        .catch(ErrorHandler.handleError)
+        return this.http.get<MenuItem[]>(`${MEAT_API}/restaurants/${id}/menu`)
     }
 }
