@@ -8,7 +8,7 @@ export const handleAuthentication = (req: Request, resp: Response) => {
     const user: User = req.body
 
     if(isValid(user)){
-        const dbUser = users[user.email]
+        const dbUser = users[user.email]// se tivesse banco faz queery no banco.
         const token = jwt.sign({sub:dbUser.email, iss: 'meat-api'}, apiConfig.secret)
         resp.json({name: dbUser.name, email: dbUser.email, accessToken: token})
     } else{
