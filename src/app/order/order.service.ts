@@ -14,8 +14,7 @@ export class OrderService {
 
   constructor(
     private carService: ShoppingCartService, 
-    private http: HttpClient,
-    private loginService: LoginService
+    private http: HttpClient
   ) { }
 
   itemsValue(): number {
@@ -37,11 +36,7 @@ export class OrderService {
   }
 
   checkOrder(order: Order): Observable<string> {
-    let headers = new HttpHeaders()
-    if (this.loginService.isLoggedIn()) {
-      headers = headers.set('Authorization', `Bearer ${this.loginService.user.accessToken}` )
-    }
-    return this.http.post<Order>(`${MEAT_API}/orders`,order, {headers})
+    return this.http.post<Order>(`${MEAT_API}/orders`,order)
           .map(order => order.id)
   }
 
