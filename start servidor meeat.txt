@@ -1,0 +1,13 @@
+compilar arquivo ts => entrar no diretorio e dá comando:
+>tsc -w
+
+start servido
+
+node pasta onde esta o arquivo server
+
+>node backend/dist/server.js
+
+nodemom ele monotora aplicação para que qualquer alteração ele restart o servidor automaticamente.
+utilizar ele para start o servidor
+
+>nodemon --watch backend backend/dist/server.js

@@ -4,7 +4,10 @@ import { NgModule, LOCALE_ID, ErrorHandler } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, PreloadAllModules } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { HashLocationStrategy, LocationStrategy, registerLocaleData } from '@angular/common';
+import locatePt from'@angular/common/locales/pt';
+
+registerLocaleData(locatePt, 'pt');
 
 import { ROUTES } from "app/app.routes";
 import { AppComponent } from './app.component';
@@ -49,7 +52,7 @@ import { ApplicationErrorHandler } from 'app/app.error-handler';
     SharedModule.forRoot(),
     RouterModule.forRoot(ROUTES, {preloadingStrategy: PreloadAllModules})
   ],
-  providers: [{provide: LOCALE_ID, useValue: 'pt-BR'},
+  providers: [{provide: LOCALE_ID, useValue: 'pt'},
     { provide: ErrorHandler, useClass: ApplicationErrorHandler}
 ],
   bootstrap: [AppComponent]

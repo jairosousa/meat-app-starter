@@ -1,4 +1,4 @@
-import { FormGroup, FormBuilder, Validators, AbstractControl } from "@angular/forms";
+import { FormGroup, FormBuilder, Validators, AbstractControl, FormControl } from "@angular/forms";
 import { Component, OnInit } from '@angular/core';
 import { RadioOption } from "app/shared/radio/radio-option.model";
 import { OrderService } from "app/order/order.service";
@@ -37,8 +37,10 @@ export class OrderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.orderForm = this.formBuilder.group({
-      name: this.formBuilder.control('', [Validators.required, Validators.minLength(5)]),
+    this.orderForm = new FormGroup({
+      name: new FormControl('', {
+        validators: [Validators.required, Validators.minLength(5)]
+      }),
       email: this.formBuilder.control('',[Validators.required, Validators.pattern(this.emailPathern)]),
       emailConfirmation: this.formBuilder.control('', [Validators.required, Validators.pattern(this.emailPathern)]),
       address: this.formBuilder.control('', [Validators.required, Validators.minLength(5)]),
@@ -46,7 +48,7 @@ export class OrderComponent implements OnInit {
       optionalAddress: this.formBuilder.control(''),
       paymentOption: this.formBuilder.control('', [Validators.required])
     },
-    {validator: OrderComponent.equalsTo}
+    {validators: [OrderComponent.equalsTo], updateOn: 'blur'}
   )
   }
 
